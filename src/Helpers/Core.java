@@ -1,7 +1,7 @@
 package Helpers;
 
-import org.junit.After;
-import org.junit.Before;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,14 +16,14 @@ public class Core {
     public static WebDriverWait wait;
     private String baseUrl;
     private StringBuffer verificationErrors = new StringBuffer();
+
     @Before
     public void setUp() throws Exception {
         driver = new FirefoxDriver();
         String baseUrl = "https://ru.wikipedia.org/";
         driver.get(baseUrl);
-        //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 10);
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(<xpath>)));
+
     }
 
     @After
@@ -33,5 +33,15 @@ public class Core {
         if (!"".equals(verificationErrorString)) {
             fail(verificationErrorString);
         }
+    }
+
+    public static WebDriver getDriver()
+    {
+        return driver;
+    }
+
+    public static WebDriverWait getWait()
+    {
+        return wait;
     }
 }
